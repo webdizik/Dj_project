@@ -1,0 +1,47 @@
+{% comment %}
+    <h1>Заголовок</h1> — главный заголовок страницы
+    <h2>Подзаголовок</h2> — для заголовков второго уровня
+    <h3>Заголовок третьего уровня</h3> … и так далее, вплоть до <h6>
+    <p>Параграф</p>
+    <em>текст</em> — курсивный шрифт
+    <strong>текст</strong> — жирный шрифт с подчёркиванием семантики
+    <b>текст</b>.
+    <br> — переход на следующую строку (внутрь br нельзя ничего поместить, также для него нет закрывающего тега)
+    <a href="https://djangogirls.org">link</a> создаёт ссылку
+    <ul><li>первый элемент</li><li>второй элемент</li></ul> создаёт список, такой же как этот!
+    <div></div> определяет раздел страницы
+{% endcomment %}
+
+{% comment %} Будут использоваться статические файлы {% endcomment %}
+{% load static %}
+<html>
+    <head>
+        <title>My blog</title>
+
+        {% comment %} Установка Bootstrap {% endcomment %}
+        <link rel="stylesheet" 
+              href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" 
+              href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        
+        {% comment %} Шрифт Lobster из шрифтов Google {% endcomment %}
+        <link rel="stylesheet"
+              href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic"
+              type="text/css">
+        {% comment %} Путь к статическому файлу css {% endcomment %}
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    </head>
+    <body>
+        <div class="page-header">
+            <h1><a href="/">My Blog</a></h1>
+        </div>
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>     
+    </body>
+</html>

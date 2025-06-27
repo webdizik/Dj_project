@@ -119,12 +119,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# В локальной системе статические файлы обслуживаются сервером django dev.
+# Поэтому используется библиотека os, и путь к папке со статическими файлами
+# указывается в виде списка папок:
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+# В производственной настройке, такой как PythonAnywhere, нужно указать путь
+
 # STATIC_ROOT = BASE_DIR / 'static'
 
-STATICFILES_DIRS = [
-    # BASE_DIR / 'static',
-    os.path.join(BASE_DIR, 'static')
-]
+# Затем в bash запустить команду: python manage.py collectstatic, 
+# которая создаст папку static в корне проекта, соберет статические файлы
+# из папок приложения, и поместит их в созданную папку static.
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

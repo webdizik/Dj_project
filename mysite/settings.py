@@ -11,12 +11,10 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 import os
-from pathlib import Path
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -28,7 +26,6 @@ SECRET_KEY = 'django-insecure-m3aa!fc_dz7op0(b%wr1nn5*ow+d$*piko$s4v^+pe*yb90bq^
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
-
 
 # Application definition
 
@@ -79,7 +76,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -118,19 +115,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # В локальной системе статические файлы обслуживаются сервером django dev.
 # Поэтому используется библиотека os, и путь к папке со статическими файлами
 # указывается в виде списка папок:
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'blog/static')]
 
 # В производственной настройке, такой как PythonAnywhere, нужно указать путь
 
 # STATIC_ROOT = BASE_DIR / 'static'
 
-# Затем в bash запустить команду: python manage.py collectstatic, 
+# Затем в bash запустить команду: python manage.py collectstatic,
 # которая создаст папку static в корне проекта, соберет статические файлы
 # из папок приложения, и поместит их в созданную папку static.
 
